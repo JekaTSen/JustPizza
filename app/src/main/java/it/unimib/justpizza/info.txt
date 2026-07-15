@@ -1,0 +1,24 @@
+1. lifecycle-livedata
+LiveData è un oggetto che "osserva" i dati e aggiorna automaticamente l’interfaccia quando i
+dati cambiano. é molto usato nei ViwModel per comunicare con i Framgent/Activity
+
+Esempio : Quando carico le pizze dal DB, con LiveData la lista si aggiorna da sola nella
+RecyclerView.
+
+-------------------------------------------------------------------------------------------------
+
+
+2. Cosa fa ExecutorService in questo PizzaRepository?
+   ExecutorService è un modo per eseguire operazioni in un thread separato (in background),
+   in modo da non bloccare l’interfaccia grafica (UI thread).
+
+   Riassunto: Cosa fa ExecutorService?
+   Esegue le operazioni di scrittura (insert, delete, update) sul database in background
+   Evita di bloccare l’interfaccia dell’app
+   Impedisce il crash di Room
+   Gestisce la coda delle operazioni (una alla volta perché è single thread)
+
+
+ -------------------------------------------------------------------------------------------------
+
+ 3.
