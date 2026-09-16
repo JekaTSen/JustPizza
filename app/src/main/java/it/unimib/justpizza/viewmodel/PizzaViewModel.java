@@ -8,10 +8,13 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import it.unimib.justpizza.model.Drink;
 import it.unimib.justpizza.model.Pizza;
+import it.unimib.justpizza.model.Side;
 import it.unimib.justpizza.repository.PizzaRepository;
 
 public class PizzaViewModel extends AndroidViewModel {
+
     private final PizzaRepository repository;
 
     public PizzaViewModel(@NonNull Application application) {
@@ -23,9 +26,15 @@ public class PizzaViewModel extends AndroidViewModel {
         return repository.getAllPizzas();
     }
 
-    public void insertAllPizzas(List<Pizza> pizzas) {
-        repository.insertAllPizzas(pizzas);
+    public LiveData<List<Drink>> getAllDrinks() {
+        return repository.getAllDrinks();
     }
 
+    public LiveData<List<Side>> getAllSides() {
+        return repository.getAllSides();
+    }
 
+    public void refreshMenu() {
+        repository.refreshMenu();
+    }
 }

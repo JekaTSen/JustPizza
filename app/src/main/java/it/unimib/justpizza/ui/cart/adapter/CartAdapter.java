@@ -45,7 +45,7 @@ public class CartAdapter extends ListAdapter<CartItem, CartAdapter.CartViewHolde
         private final TextView nameText;
         private final TextView quantityText;
         private final TextView priceText;
-        private final ImageButton removeButton;
+        private final View removeButton;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -26,4 +26,8 @@ public class OrdersViewModel extends AndroidViewModel {
     public void insertOrder(Order order) {
         repository.insertOrder(order);
     }
+
+    public void refreshOrders(String userId) {
+        repository.refreshOrders(userId);
+    }
 }

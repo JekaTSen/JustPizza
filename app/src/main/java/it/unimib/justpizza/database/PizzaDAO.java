@@ -3,6 +3,7 @@ package it.unimib.justpizza.database;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface PizzaDAO {
     @Query("SELECT * FROM pizzas ORDER BY name ASC")
     LiveData<List<Pizza>> getAllPizzas();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Pizza> pizzas);
 
     @Query("DELETE FROM pizzas")

@@ -19,6 +19,7 @@ import it.unimib.justpizza.model.Pizza;
 public class PizzaAdapter extends ListAdapter<Pizza, PizzaAdapter.PizzaViewHolder> {
 
     private OnPizzaClickListener listener;
+
     public PizzaAdapter() {
         super(new PizzaDiffCallback());
     }
@@ -36,7 +37,7 @@ public class PizzaAdapter extends ListAdapter<Pizza, PizzaAdapter.PizzaViewHolde
         Pizza pizza = getItem(position);
         holder.bind(pizza);
 
-        holder.itemView.setOnClickListener(v -> {
+        holder.addButton.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onPizzaClick(pizza);
             }
@@ -46,19 +47,25 @@ public class PizzaAdapter extends ListAdapter<Pizza, PizzaAdapter.PizzaViewHolde
     static class PizzaViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameText;
         private final TextView priceText;
+        private final TextView ingredientsText;
         private final ImageView imageView;
-
+        final View addButton;
 
         public PizzaViewHolder(@NonNull View itemView) {
             super(itemView);
             nameText = itemView.findViewById(R.id.pizza_name);
             priceText = itemView.findViewById(R.id.pizza_price);
+            ingredientsText = itemView.findViewById(R.id.pizza_ingredients);
             imageView = itemView.findViewById(R.id.pizza_image);
+            addButton = itemView.findViewById(R.id.btn_add);
         }
 
         public void bind(Pizza pizza) {
             nameText.setText(pizza.getName());
             priceText.setText(String.format("€ %.2f", pizza.getPrice()));
+            if (pizza.getIngredients() != null) {
+                ingredientsText.setText(pizza.getIngredients());
+            }
 
             Glide.with(itemView.getContext())
                     .load(pizza.getImageUrl())
@@ -87,5 +94,4 @@ public class PizzaAdapter extends ListAdapter<Pizza, PizzaAdapter.PizzaViewHolde
     public interface OnPizzaClickListener {
         void onPizzaClick(Pizza pizza);
     }
-
 }
